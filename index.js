@@ -96,31 +96,37 @@ function filterUnfundedOnly() {
     deleteChildElements(gamesContainer);
 
     // use filter() to get a list of games that have not yet met their goal
-    let notMetGoal = GAMES_JSON.filter ( (game) => game.goal >game.pledged);
+    let unfundedGames  = GAMES_JSON.filter ( (game) => game.goal > game.pledged);
 
     // use the function we previously created to add the unfunded games to the DOM
-    addGamesToPage(notMetGoal);
+    addGamesToPage(unfundedGames);
 }
 
-console.log(filterUnfundedOnly());
+//uncomment so see the games that are not yet funded/ havent reached their goal
+//console.log(filterUnfundedOnly());
+
 
 // show only games that are fully funded
 function filterFundedOnly() {
     deleteChildElements(gamesContainer);
 
     // use filter() to get a list of games that have met or exceeded their goal
-
+    let fundedGames = GAMES_JSON.filter ( (game) => game.goal <= game.pledged);
 
     // use the function we previously created to add unfunded games to the DOM
-
+    addGamesToPage(fundedGames);
 }
+
+//uncomment so see the games that are fully funded/ have reached their goal
+//console.log(filterFundedOnly());
+
 
 // show all games
 function showAllGames() {
     deleteChildElements(gamesContainer);
 
     // add all games from the JSON data to the DOM
-
+    addGamesToPage(GAMES_JSON);
 }
 
 // select each button in the "Our Games" section
@@ -129,6 +135,9 @@ const fundedBtn = document.getElementById("funded-btn");
 const allBtn = document.getElementById("all-btn");
 
 // add event listeners with the correct functions to each button
+unfundedBtn.addEventListener('click', filterUnfundedOnly);
+fundedBtn.addEventListener('click', filterFundedOnly);
+allBtn.addEventListener('click', showAllGames);
 
 
 /*************************************************************************************
@@ -140,12 +149,19 @@ const allBtn = document.getElementById("all-btn");
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-
+const numUnfundedGames = GAMES_JSON.filter ( (game) => game.goal > game.pledged).length;
 
 // create a string that explains the number of unfunded games using the ternary operator
-
+const unfundedStr = `A total of ${totalRaised.toLocaleString("en-US")} has been raised for 
+    ${totalGames} games. Currently, ${numUnfundedGames === 1 ? "1 game" : numUnfundedGames + 
+    " games"} remain unfunded. We need your help to fund these amazing games!`; 
+    
 
 // create a new DOM element containing the template string and append it to the description container
+const unfundedDescription = document.createElement("p");
+unfundedDescription.innerHTML = unfundedStr;
+descriptionContainer.appendChild(unfundedDescription);
+
 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
@@ -155,12 +171,23 @@ const descriptionContainer = document.getElementById("description-container");
 const firstGameContainer = document.getElementById("first-game");
 const secondGameContainer = document.getElementById("second-game");
 
+// sort the games from highest pledged to lowest
 const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
     return item2.pledged - item1.pledged;
 });
 
 // use destructuring and the spread operator to grab the first and second games
+const [topGame, runnerUp, ...rest] = sortedGames;
+    console.log(topGame);  //will log the top game. check in browser with inspection
+    console.log(runnerUp); //will log the runner up game. check in browser with inspection
+    console.log(rest)
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
+const topPledgeGame = document.createElement("p");
+topPledgeGame.innerHTML = `<p>${topGame.name}</p>`;
+firstGameContainer.appendChild(topPledgeGame);
 
 // do the same for the runner up item
+const runnerUpGame = document.createElement("div");
+runnerUpGame.innerHTML = `<p>${runnerUp.name}</p>`;
+secondGameContainer.appendChild(runnerUpGame);

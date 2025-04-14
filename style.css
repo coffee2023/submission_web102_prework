@@ -22,7 +22,6 @@ body {
 .stats-container {
     display: flex;
     align-items: center;
-    cursor: pointer;
     box-shadow: 0 0 30px lightblue; 
 }
 
@@ -75,4 +74,13 @@ button {
     padding: 1%;
     margin: 1%;
     border-radius: 7px;
+}
+#gameSection {
+    border: white 2px solid;
+    background-color: white;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
 }
