@@ -25,6 +25,7 @@ Here's a walkthrough of implemented features:
 
 <img src='https://imgur.com/gallery/web102-prework-gif-7h7xW7H' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+[My GIF link](https://imgur.com/gallery/web102-prework-gif-7h7xW7H)
 
 GIF created with ...  
 [ScreenToGif](https://www.screentogif.com/) for Windows
