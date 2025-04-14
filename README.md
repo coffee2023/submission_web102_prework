@@ -21,9 +21,7 @@ The following **optional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented features:
-
-<img src='https://imgur.com/gallery/web102-prework-gif-7h7xW7H' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Here's is the link the walkthrough of implemented features:
 
 [My GIF link](https://imgur.com/gallery/web102-prework-gif-7h7xW7H)
 
